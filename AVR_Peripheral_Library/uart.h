@@ -23,7 +23,7 @@
 #define rx_bufsize (25)
 #define tx_bufsize (25)
 
-#define UBRR_Value(b)       (uint16_t)((uint16_t)F_CPU/(uint16_t)(16*b)-1)
+#define UBRR_Value(b)       (uint16_t)((uint32_t)F_CPU/(uint64_t)(16*b)-1)
 #define UBRR_U2XValue(b)    ((unsigned long)F_CPU-4*(unsigned long)b)/( 8*(unsigned long)b)-1
 
 void uart_putchar(char c);
