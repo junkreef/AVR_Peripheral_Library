@@ -21,5 +21,7 @@
 
 
 int main(void){
+	uart_init(9600);
+	while(1) uart_putstr("Test\n\r");
 	return 0;
 }
