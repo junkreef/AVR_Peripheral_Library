@@ -16,10 +16,90 @@
 #include <avr/io.h>
 #include "timer.h"
 
+__inline__ void timer0_set(uint8_t valueA,uint8_t valueB){
+	OCR0A=valueA;
+	OCR0B=valueB;
+}
+
+__inline__ void timer1_set(uint16_t valueA,uint16_t valueB){
+	OCR1A=valueA;
+	OCR1B=valueB;
+}
+
+__inline__ void timer2_set(uint8_t valueA,uint8_t valueB){
+	OCR2A=valueA;
+	OCR2B=valueB;
+}
 
 #ifdef __AVR_ATmega644P__
-void timer0_init(_timer_mode mode){
-	switch(mode){
+void timer0_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+		TCCR0A = 0x00;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_CTC:
+		TCCR0A = 0x02;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_PWM:
+		TCCR0A = 0xa3;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_STOP:
+		TCCR0A = 0x00;
+		TCCR0B = 0x00;
+		break;
+	}
+}
+
+void timer1_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+		TCCR1A = 0x00;
+		TCCR1B = 0x05;
+		break;
+		case timer_mode_CTC:
+		TCCR1A = 0x00;
+		TCCR1B = 0x0D;
+		break;
+		case timer_mode_PWM:
+		TCCR1A = 0x01;
+		TCCR1B = 0x0D;
+		break;
+		case timer_mode_STOP:
+		TCCR1A = 0;
+		TCCR1B = 0;
+		break;
+	}
+	TCCR1C = 0;
+}
+
+void timer2_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+		TCCR2A = 0x00;
+		TCCR2B = 0x05;
+		break;
+		case timer_mode_CTC:
+		TCCR2A = 0x02;
+		TCCR2B = 0x05;
+		break;
+		case timer_mode_PWM:
+		TCCR2A = 0xa3;
+		TCCR2B = 0x05;
+		break;
+		case timer_mode_STOP:
+		TCCR2A = 0x00;
+		TCCR2B = 0x00;
+		break;
+	}
+}
+#endif /* __AVR_ATmega644P__ */
+
+#ifdef __AVR_ATmega1284P__
+void timer0_init(_timer_mode timer_mode){
+	switch(timer_mode){
 		case timer_mode_Normal:
 			TCCR0A = 0x00;
 			TCCR0B = 0x05;
@@ -39,8 +119,8 @@ void timer0_init(_timer_mode mode){
 	}
 }
 
-void timer1_init(_timer_mode mode){
-	switch(mode){
+void timer1_init(_timer_mode timer_mode){
+	switch(timer_mode){
 		case timer_mode_Normal:
 			TCCR1A = 0x00;
 			TCCR1B = 0x05;
@@ -61,8 +141,8 @@ void timer1_init(_timer_mode mode){
 	TCCR1C = 0;
 }
 
-void timer2_init(_timer_mode mode){
-	switch(mode){
+void timer2_init(_timer_mode timer_mode){
+	switch(timer_mode){
 		case timer_mode_Normal:
 			TCCR2A = 0x00;
 			TCCR2B = 0x05;
@@ -81,4 +161,138 @@ void timer2_init(_timer_mode mode){
 			break;
 	}
 }
-#endif /* __AVR_ATmega644P__ */
+#endif /* __AVR_ATmega1284P__ */
+
+#ifdef __AVR_ATmega168P__
+void timer0_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+		TCCR0A = 0x00;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_CTC:
+		TCCR0A = 0x02;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_PWM:
+		TCCR0A = 0xa3;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_STOP:
+		TCCR0A = 0x00;
+		TCCR0B = 0x00;
+		break;
+	}
+}
+
+void timer1_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+			TCCR1A = 0x00;
+			TCCR1B = 0x05;
+			break;
+		case timer_mode_CTC:
+			TCCR1A = 0x00;
+			TCCR1B = 0x0D;
+			break;
+		case timer_mode_PWM:
+			TCCR1A = 0x01;
+			TCCR1B = 0x0D;
+			break;
+		case timer_mode_STOP:
+			TCCR1A = 0;
+			TCCR1B = 0;
+			break;
+	}
+	TCCR1C = 0;
+}
+
+void timer2_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+			TCCR2A = 0x00;
+			TCCR2B = 0x05;
+			break;
+		case timer_mode_CTC:
+			TCCR2A = 0x02;
+			TCCR2B = 0x05;
+			break;
+		case timer_mode_PWM:
+			TCCR2A = 0xa3;
+			TCCR2B = 0x05;
+			break;
+		case timer_mode_STOP:
+			TCCR2A = 0x00;
+			TCCR2B = 0x00;
+			break;
+	}
+}
+
+#endif /* __AVR_ATmega168P__ */
+
+#ifdef __AVR_ATmega328P__
+void timer0_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+		TCCR0A = 0x00;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_CTC:
+		TCCR0A = 0x02;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_PWM:
+		TCCR0A = 0xa3;
+		TCCR0B = 0x05;
+		break;
+		case timer_mode_STOP:
+		TCCR0A = 0x00;
+		TCCR0B = 0x00;
+		break;
+	}
+}
+
+void timer1_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+			TCCR1A = 0x00;
+			TCCR1B = 0x05;
+			break;
+		case timer_mode_CTC:
+			TCCR1A = 0x00;
+			TCCR1B = 0x0D;
+			break;
+		case timer_mode_PWM:
+			TCCR1A = 0x01;
+			TCCR1B = 0x0D;
+			break;
+		case timer_mode_STOP:
+			TCCR1A = 0;
+			TCCR1B = 0;
+			break;
+	}
+	TCCR1C = 0;
+}
+
+void timer2_init(_timer_mode timer_mode){
+	switch(timer_mode){
+		case timer_mode_Normal:
+			TCCR2A = 0x00;
+			TCCR2B = 0x05;
+			break;
+		case timer_mode_CTC:
+			TCCR2A = 0x02;
+			TCCR2B = 0x05;
+			break;
+		case timer_mode_PWM:
+			TCCR2A = 0xa3;
+			TCCR2B = 0x05;
+			break;
+		case timer_mode_STOP:
+			TCCR2A = 0x00;
+			TCCR2B = 0x00;
+			break;
+	}
+}
+
+#endif /* __AVR_ATmega328P__ */

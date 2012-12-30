@@ -22,9 +22,30 @@ typedef enum {
 
 #ifdef __AVR_ATmega644P__
 /*Private Function*/
-void timer0_init(_timer_mode mode);
-void timer1_init(_timer_mode mode);
-void timer2_init(_timer_mode mode);
+void timer0_init(_timer_mode timer_mode);
+void timer1_init(_timer_mode timer_mode);
+void timer2_init(_timer_mode timer_mode);
 #endif /* __AVR_ATmega644P__ */
+
+#ifdef __AVR_ATmega1284P__
+/*Private Function*/
+void timer0_init(_timer_mode timer_mode);
+void timer1_init(_timer_mode timer_mode);
+void timer2_init(_timer_mode timer_mode);
+#endif /* __AVR_ATmega1284P__ */
+
+#ifdef __AVR_ATmega168P__
+/*Private Function*/
+void timer0_init(_timer_mode timer_mode);
+void timer1_init(_timer_mode timer_mode);
+void timer2_init(_timer_mode timer_mode);
+#endif /* __AVR_ATmega168P__ */
+
+#ifdef __AVR_ATmega328P__
+/*Private Function*/
+void timer0_init(_timer_mode timer_mode);
+void timer1_init(_timer_mode timer_mode);
+void timer2_init(_timer_mode timer_mode);
+#endif /* __AVR_ATmega328P__ */
 
 #endif /* TIMER_H_ */
