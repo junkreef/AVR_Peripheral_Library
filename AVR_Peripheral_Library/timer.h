@@ -20,6 +20,11 @@ typedef enum {
 	timer_mode_Normal, timer_mode_CTC, timer_mode_PWM, timer_mode_STOP
 } _timer_mode;
 
+
+void timer0_set(uint8_t valueA,uint8_t valueB);
+void timer1_set(uint16_t valueA,uint16_t valueB);
+void timer2_set(uint8_t valueA,uint8_t valueB);
+
 #ifdef __AVR_ATmega644P__
 /*Private Function*/
 void timer0_init(_timer_mode timer_mode);

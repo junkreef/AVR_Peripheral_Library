@@ -16,17 +16,17 @@
 #include <avr/io.h>
 #include "timer.h"
 
-__inline__ void timer0_set(uint8_t valueA,uint8_t valueB){
+inline void timer0_set(uint8_t valueA,uint8_t valueB){
 	OCR0A=valueA;
 	OCR0B=valueB;
 }
 
-__inline__ void timer1_set(uint16_t valueA,uint16_t valueB){
+inline void timer1_set(uint16_t valueA,uint16_t valueB){
 	OCR1A=valueA;
 	OCR1B=valueB;
 }
 
-__inline__ void timer2_set(uint8_t valueA,uint8_t valueB){
+inline void timer2_set(uint8_t valueA,uint8_t valueB){
 	OCR2A=valueA;
 	OCR2B=valueB;
 }
