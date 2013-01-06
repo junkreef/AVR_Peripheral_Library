@@ -18,10 +18,13 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "uart.h"
+#include "timer.h"
 
 
 int main(void){
 	uart_init(9600);
+	timer0_init(timer_mode_PWM);
+	timer0_set(50,50);
 	while(1) uart_putstr("Test\n\r");
 	return 0;
 }
