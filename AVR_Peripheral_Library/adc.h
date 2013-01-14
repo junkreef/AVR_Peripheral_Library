@@ -24,7 +24,7 @@
 /* Reference = AREF_Pin */
 //	#define REF_SELECT 0
 /* Reference = AVCC_Pin(Recommanded on X1) */
-	#define REF_SELECT 1
+#define REF_SELECT 1
 /* Reference = 1.1V */
 //	#define REF_SELECT 2
 /* Reference = 2.56V(Recommanded on X10 or X200) */
@@ -50,12 +50,24 @@
 #define ADC_CONVERT_TYPE_SLEEP
 
 //*** Private Macro ***//
+#ifdef ADC_CONVERT_TYPE_SLEEP
+#define ADC_START ADCSRA|(1<<ADSC)|(1<<ADIF)|(1<<ADIE)
+#else
 #define ADC_START ADCSRA|(1<<ADSC)|(1<<ADIF)
+#endif
+
+#define ADC0 0
+#define ADC1 1
+#define ADC2 2
+#define ADC3 3
+#define ADC4 4
+#define ADC5 5
+#define ADC6 6
+#define ADC7 7
 
 //*** Private Function Prototype ***//
 void adc_init();
 uint16_t adc_convert(uint8_t);
 inline void adc_wait(void);
-
 
 #endif /* ADC_H_ */
