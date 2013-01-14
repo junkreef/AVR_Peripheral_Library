@@ -19,12 +19,17 @@
 #include <util/delay.h>
 #include "uart.h"
 #include "timer.h"
-
+#include "adc.h"
 
 int main(void){
 	uart_init(9600);
-	timer0_init(timer_mode_PWM);
-	timer0_set(50,50);
-	while(1) uart_putstr("Test\n\r");
+	uart_putstr("//***********************************//\n\r"
+				"//     AVR Peripheral Library        //\n\r"
+				"//***********************************//\n\r");
+	adc_init();
+	while(1){
+		uart_putdec(adc_convert(ADC0));
+		uart_putstr("\n\r");
+	}
 	return 0;
 }
